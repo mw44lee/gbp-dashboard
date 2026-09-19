@@ -1,0 +1,76 @@
+// Prisma schema: this file is the single source of truth for the DB shape.
+// `prisma migrate dev` reads this and generates versioned SQL migrations;
+// `prisma generate` builds the typed client that services/routes import.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Store {
+  id             Int      @id @default(autoincrement())
+  name           String
+  region         String
+  country        String
+  gbpUrl         String   @unique
+  category       String
+  views          Int      @default(0)
+  websiteClicks  Int      @default(0)
+  directions     Int      @default(0)
+  calls          Int      @default(0)
+  visitEst       Int      @default(0)
+  purchaseEst    Int      @default(0)
+  rating         Float    @default(0)
+  ratingPrev     Float    @default(0)
+  imgAgeDays     Int      @default(0)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  products Product[]
+  reviews  Review[]
+
+  // status/issues (healthy|warn|critical + alert text) are NOT stored here —
+  // they're derived from the fields above by services/alerts.ts on every read,
+  // so there's one place that defines "what counts as an issue".
+}
+
+model Product {
+  id       Int    @id @default(autoincrement())
+  storeId  Int
+  store    Store  @relation(fields: [storeId], references: [id], onDelete: Cascade)
+  name     String
+  category String
+  price    Int
+  imageUrl String?
+}
+
+model Review {
+  id           Int      @id @default(autoincrement())
+  storeId      Int
+  store        Store    @relation(fields: [storeId], references: [id], onDelete: Cascade)
+  author       String
+  stars        Int
+  originalText String
+  originalLang String
+  date         String
+  sentiment    String
+
+  translations ReviewTranslation[]
+}
+
+// Cache of on-demand AI translations, keyed by (review, target language),
+// so switching a review's display language twice doesn't call the AI provider twice.
+model ReviewTranslation {
+  id        Int      @id @default(autoincrement())
+  reviewId  Int
+  review    Review   @relation(fields: [reviewId], references: [id], onDelete: Cascade)
+  lang      String
+  text      String
+  createdAt DateTime @default(now())
+
+  @@unique([reviewId, lang])
+}

@@ -1,0 +1,75 @@
+{
+  "header": {
+    "eyebrow": "Retail AX · GBP Store Ops Board",
+    "titleLine1": "구글 비즈니스 프로필",
+    "titleLine2": "매장 관제 대시보드",
+    "subtitle": "전 매장 GBP 노출·액션·리뷰를 한 화면에서 모니터링하고, 이슈를 조기에 포착합니다.",
+    "stat": {
+      "stores": "모니터링 매장",
+      "actions": "이번 주 총 액션",
+      "rating": "평균 평점",
+      "critical": "긴급 이슈"
+    }
+  },
+  "alerts": {
+    "label": "Alerts",
+    "sub": "자동 감지된 매장별 이슈 — 관리자·매장 매니저에게 실시간 노티 발송 대상",
+    "none": "현재 감지된 이슈가 없습니다.",
+    "notified": "발송됨"
+  },
+  "board": {
+    "label": "Store Board",
+    "sub": "매장을 클릭하면 GBP 액션 퍼널, 판매 제품, 리뷰 상세, AI 응답 어시스턴트를 볼 수 있습니다",
+    "head": {
+      "store": "매장",
+      "actions": "주간 액션",
+      "visits": "방문 추정",
+      "rating": "평점",
+      "image": "대표 이미지",
+      "status": "상태"
+    },
+    "daysAgo": "{{count}}일 전"
+  },
+  "status": {
+    "healthy": "정상",
+    "warn": "주의",
+    "critical": "긴급"
+  },
+  "modal": {
+    "ratingVs": "이전 {{prev}} 대비"
+  },
+  "funnel": {
+    "label": "GBP Action Funnel",
+    "sub": "노출 → 액션 → 방문 → 구매 추정 전환",
+    "views": "프로필 노출",
+    "actions": "액션 합계",
+    "visit": "방문 추정",
+    "purchase": "구매 추정"
+  },
+  "products": {
+    "label": "판매 제품"
+  },
+  "reviews": {
+    "label": "Reviews",
+    "viewIn": "번역 보기",
+    "original": "원문",
+    "sentimentPos": "긍정",
+    "sentimentNeg": "부정"
+  },
+  "ai": {
+    "label": "AI Reply Assistant",
+    "hint": "왼쪽에서 리뷰를 선택하고, 아래에서 언어를 고른 뒤 버튼을 누르면 브랜드 가이드라인에 맞춘 답변 초안을 생성합니다.",
+    "replyLang": "답변 언어",
+    "generate": "답변 초안 생성",
+    "generating": "생성 중…",
+    "empty": "아직 생성된 답변이 없습니다.",
+    "guidelineTitle": "적용 가이드라인",
+    "guideline": "1. 첫 문장은 공감으로 시작한다 (불편을 끼쳐드린 점에 대한 사과)\n2. 사실관계는 인정하되, 매장/직원 과실을 단정적으로 언급하지 않는다\n3. 구체적인 개선 조치 또는 확인 의지를 한 문장으로 밝힌다\n4. 가능하면 오프라인 채널(매장 전화, 고객센터)로 연결을 유도한다\n5. 전체 100자 내외, 정중한 존댓말, 이모지 사용하지 않음\n6. 리뷰 내용을 그대로 반복하지 말고 요지만 짚는다",
+    "error": "답변 생성에 실패했습니다 ({{message}}). 다시 시도해주세요."
+  },
+  "footer": {
+    "tag": "GBP OPS BOARD · PROTOTYPE v0.2 · SAMPLE DATA",
+    "lastSync": "마지막 동기화 {{time}}"
+  },
+  "language": "언어"
+}

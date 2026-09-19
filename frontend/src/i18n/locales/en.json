@@ -1,0 +1,75 @@
+{
+  "header": {
+    "eyebrow": "Retail AX · GBP Store Ops Board",
+    "titleLine1": "Google Business Profile",
+    "titleLine2": "Store Ops Dashboard",
+    "subtitle": "Monitor GBP exposure, actions, and reviews for every store from one screen, and catch issues before they escalate.",
+    "stat": {
+      "stores": "Monitored Stores",
+      "actions": "Weekly Actions",
+      "rating": "Avg. Rating",
+      "critical": "Critical Issues"
+    }
+  },
+  "alerts": {
+    "label": "Alerts",
+    "sub": "Automatically detected per-store issues, sent to admins and store managers in real time",
+    "none": "No issues currently detected.",
+    "notified": "NOTIFIED"
+  },
+  "board": {
+    "label": "Store Board",
+    "sub": "Click a store to see its GBP action funnel, product list, reviews, and AI reply assistant",
+    "head": {
+      "store": "Store",
+      "actions": "Weekly Actions",
+      "visits": "Visit Est.",
+      "rating": "Rating",
+      "image": "Cover Photo",
+      "status": "Status"
+    },
+    "daysAgo": "{{count}}d ago"
+  },
+  "status": {
+    "healthy": "Healthy",
+    "warn": "Warning",
+    "critical": "Critical"
+  },
+  "modal": {
+    "ratingVs": "vs {{prev}} previously"
+  },
+  "funnel": {
+    "label": "GBP Action Funnel",
+    "sub": "Views → Actions → Visit → Purchase estimate",
+    "views": "Profile Views",
+    "actions": "Total Actions",
+    "visit": "Visit Est.",
+    "purchase": "Purchase Est."
+  },
+  "products": {
+    "label": "Products"
+  },
+  "reviews": {
+    "label": "Reviews",
+    "viewIn": "View in",
+    "original": "Original",
+    "sentimentPos": "positive",
+    "sentimentNeg": "negative"
+  },
+  "ai": {
+    "label": "AI Reply Assistant",
+    "hint": "Select a review on the left, then generate a reply draft that follows brand guidelines, in the language you choose below.",
+    "replyLang": "Reply language",
+    "generate": "Generate reply draft",
+    "generating": "Generating…",
+    "empty": "No draft generated yet.",
+    "guidelineTitle": "Guidelines applied",
+    "guideline": "1. Open with empathy (acknowledge the inconvenience).\n2. Accept the facts without directly blaming the store or a specific staff member.\n3. State one concrete next step or commitment to look into it.\n4. Where relevant, invite the customer to continue offline (store phone line, support center).\n5. Keep it to roughly 2-3 sentences, polite tone, no emoji.\n6. Don't just repeat the review back — respond to the substance of it.",
+    "error": "Failed to generate a draft ({{message}}). Please try again."
+  },
+  "footer": {
+    "tag": "GBP OPS BOARD · PROTOTYPE v0.2 · SAMPLE DATA",
+    "lastSync": "Last synced {{time}}"
+  },
+  "language": "Language"
+}

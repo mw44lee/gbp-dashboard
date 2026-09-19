@@ -1,0 +1,151 @@
+{
+  "stores": [
+    {
+      "name": "Gangnam Flagship",
+      "region": "Gangnam-gu, Seoul",
+      "country": "KR",
+      "gbpUrl": "https://www.google.com/maps/place/?q=place_id:dummy-gangnam-001",
+      "category": "Electronics Retailer",
+      "views": 14200, "websiteClicks": 820, "directions": 640, "calls": 210,
+      "visitEst": 410, "purchaseEst": 186, "rating": 4.6, "ratingPrev": 4.5, "imgAgeDays": 12,
+      "products": [
+        { "name": "Aurora Buds Pro", "category": "Audio", "price": 189000 },
+        { "name": "NovaTab 11", "category": "Tablet", "price": 549000 },
+        { "name": "QuickCharge 65W Adapter", "category": "Accessory", "price": 39000 }
+      ],
+      "reviews": [
+        { "author": "Kim **", "stars": 5, "date": "2026-07-28", "originalLang": "ko", "sentiment": "pos",
+          "originalText": "직원분이 제품 설명을 정말 친절하게 해주셨어요. 재방문 의사 100%입니다." },
+        { "author": "Lee **", "stars": 2, "date": "2026-07-22", "originalLang": "ko", "sentiment": "neg",
+          "originalText": "주말에 갔는데 대기가 너무 길고 안내하는 사람이 없어서 그냥 나왔습니다." }
+      ]
+    },
+    {
+      "name": "Hongdae Store",
+      "region": "Mapo-gu, Seoul",
+      "country": "KR",
+      "gbpUrl": "https://www.google.com/maps/place/?q=place_id:dummy-hongdae-002",
+      "category": "Electronics Retailer",
+      "views": 9800, "websiteClicks": 410, "directions": 390, "calls": 95,
+      "visitEst": 220, "purchaseEst": 74, "rating": 3.6, "ratingPrev": 4.1, "imgAgeDays": 140,
+      "products": [
+        { "name": "Aurora Buds Pro", "category": "Audio", "price": 189000 },
+        { "name": "PixelWatch S", "category": "Wearable", "price": 329000 }
+      ],
+      "reviews": [
+        { "author": "Park **", "stars": 2, "date": "2026-07-30", "originalLang": "ko", "sentiment": "neg",
+          "originalText": "매장이 예전보다 많이 지저분해졌어요. 관리가 안 되는 느낌." },
+        { "author": "Choi **", "stars": 1, "date": "2026-07-26", "originalLang": "ko", "sentiment": "neg",
+          "originalText": "전시 제품이 사진이랑 너무 달라서 실망했습니다." }
+      ]
+    },
+    {
+      "name": "Jamsil Lotte Store",
+      "region": "Songpa-gu, Seoul",
+      "country": "KR",
+      "gbpUrl": "https://www.google.com/maps/place/?q=place_id:dummy-jamsil-003",
+      "category": "Electronics Retailer",
+      "views": 16500, "websiteClicks": 990, "directions": 820, "calls": 260,
+      "visitEst": 520, "purchaseEst": 241, "rating": 4.7, "ratingPrev": 4.7, "imgAgeDays": 8,
+      "products": [
+        { "name": "NovaTab 11", "category": "Tablet", "price": 549000 },
+        { "name": "StreamBook 14", "category": "Laptop", "price": 1290000 },
+        { "name": "QuickCharge 65W Adapter", "category": "Accessory", "price": 39000 }
+      ],
+      "reviews": [
+        { "author": "Jung **", "stars": 5, "date": "2026-07-29", "originalLang": "ko", "sentiment": "pos",
+          "originalText": "응대도 빠르고 재고도 넉넉해서 좋았습니다." }
+      ]
+    },
+    {
+      "name": "Busan Seomyeon Store",
+      "region": "Busanjin-gu, Busan",
+      "country": "KR",
+      "gbpUrl": "https://www.google.com/maps/place/?q=place_id:dummy-busan-004",
+      "category": "Electronics Retailer",
+      "views": 7200, "websiteClicks": 180, "directions": 210, "calls": 340,
+      "visitEst": 95, "purchaseEst": 22, "rating": 3.1, "ratingPrev": 4.0, "imgAgeDays": 210,
+      "products": [
+        { "name": "Aurora Buds Pro", "category": "Audio", "price": 189000 },
+        { "name": "PixelWatch S", "category": "Wearable", "price": 329000 }
+      ],
+      "reviews": [
+        { "author": "Han **", "stars": 1, "date": "2026-07-31", "originalLang": "ko", "sentiment": "neg",
+          "originalText": "직원이 너무 불친절하고 반품 문의에도 제대로 응대를 안 해줍니다." },
+        { "author": "Yoon **", "stars": 1, "date": "2026-07-30", "originalLang": "ko", "sentiment": "neg",
+          "originalText": "매장에 재고가 없는데 홈페이지엔 있다고 나와서 헛걸음했어요." },
+        { "author": "Jo **", "stars": 2, "date": "2026-07-28", "originalLang": "ko", "sentiment": "neg",
+          "originalText": "전화를 몇 번을 걸어도 안 받아서 결국 다른 매장으로 갔습니다." }
+      ]
+    },
+    {
+      "name": "Daegu Dongseongno Store",
+      "region": "Jung-gu, Daegu",
+      "country": "KR",
+      "gbpUrl": "https://www.google.com/maps/place/?q=place_id:dummy-daegu-005",
+      "category": "Electronics Retailer",
+      "views": 8600, "websiteClicks": 430, "directions": 360, "calls": 120,
+      "visitEst": 210, "purchaseEst": 88, "rating": 4.4, "ratingPrev": 4.3, "imgAgeDays": 25,
+      "products": [
+        { "name": "NovaTab 11", "category": "Tablet", "price": 549000 }
+      ],
+      "reviews": [
+        { "author": "Seo **", "stars": 4, "date": "2026-07-27", "originalLang": "ko", "sentiment": "pos",
+          "originalText": "주차가 조금 불편했지만 직원분들은 친절했어요." }
+      ]
+    },
+    {
+      "name": "Pangyo Hyundai Store",
+      "region": "Seongnam-si, Gyeonggi",
+      "country": "KR",
+      "gbpUrl": "https://www.google.com/maps/place/?q=place_id:dummy-pangyo-006",
+      "category": "Electronics Retailer",
+      "views": 11200, "websiteClicks": 610, "directions": 780, "calls": 140,
+      "visitEst": 180, "purchaseEst": 61, "rating": 4.2, "ratingPrev": 4.2, "imgAgeDays": 35,
+      "products": [
+        { "name": "StreamBook 14", "category": "Laptop", "price": 1290000 },
+        { "name": "PixelWatch S", "category": "Wearable", "price": 329000 }
+      ],
+      "reviews": [
+        { "author": "Lim **", "stars": 3, "date": "2026-07-25", "originalLang": "ko", "sentiment": "neg",
+          "originalText": "구글 지도로 찾아갔는데 실제 입구가 반대편이라 좀 헤맸어요." }
+      ]
+    },
+    {
+      "name": "Gwanggyo Avenuefrance Store",
+      "region": "Suwon-si, Gyeonggi",
+      "country": "KR",
+      "gbpUrl": "https://www.google.com/maps/place/?q=place_id:dummy-gwanggyo-007",
+      "category": "Electronics Retailer",
+      "views": 9100, "websiteClicks": 520, "directions": 410, "calls": 130,
+      "visitEst": 245, "purchaseEst": 112, "rating": 4.5, "ratingPrev": 4.5, "imgAgeDays": 18,
+      "products": [
+        { "name": "Aurora Buds Pro", "category": "Audio", "price": 189000 },
+        { "name": "QuickCharge 65W Adapter", "category": "Accessory", "price": 39000 }
+      ],
+      "reviews": [
+        { "author": "Yoo **", "stars": 5, "date": "2026-07-29", "originalLang": "ko", "sentiment": "pos",
+          "originalText": "항상 친절하고 신제품 안내도 잘 해주셔서 자주 갑니다." }
+      ]
+    },
+    {
+      "name": "Daejeon Dunsan Store",
+      "region": "Seo-gu, Daejeon",
+      "country": "KR",
+      "gbpUrl": "https://www.google.com/maps/place/?q=place_id:dummy-daejeon-008",
+      "category": "Electronics Retailer",
+      "views": 6400, "websiteClicks": 150, "directions": 130, "calls": 410,
+      "visitEst": 70, "purchaseEst": 15, "rating": 3.3, "ratingPrev": 3.9, "imgAgeDays": 95,
+      "products": [
+        { "name": "NovaTab 11", "category": "Tablet", "price": 549000 },
+        { "name": "StreamBook 14", "category": "Laptop", "price": 1290000 }
+      ],
+      "reviews": [
+        { "author": "Kang **", "stars": 1, "date": "2026-07-31", "originalLang": "ko", "sentiment": "neg",
+          "originalText": "수리 맡긴 지 3주가 지나도 연락이 없어서 답답합니다." },
+        { "author": "Bae **", "stars": 2, "date": "2026-07-29", "originalLang": "ko", "sentiment": "neg",
+          "originalText": "문의 전화를 계속 걸어도 통화중이라 연결이 안 돼요." }
+      ]
+    }
+  ]
+}
