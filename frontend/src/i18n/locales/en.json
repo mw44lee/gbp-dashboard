@@ -36,7 +36,10 @@
     "critical": "Critical"
   },
   "modal": {
-    "ratingVs": "vs {{prev}} previously"
+    "ratingVs": "vs {{prev}} previously",
+    "reviewsCount": "Google reviews",
+    "viewOnMaps": "View on Google Maps",
+    "website": "Official website"
   },
   "funnel": {
     "label": "GBP Action Funnel",

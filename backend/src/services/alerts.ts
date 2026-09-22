@@ -18,12 +18,26 @@ export interface StoreMetrics {
   rating: number;
   ratingPrev: number;
   imgAgeDays: number;
+  operatingStatus?: string | null;
 }
 
 const INDUSTRY_AVG_DIRECTIONS_TO_VISIT = 0.41;
+const CLOSED_PATTERNS = ["폐업", "permanently closed", "closed permanently"];
+const TEMP_CLOSED_PATTERNS = ["임시 휴업", "temporarily closed"];
 
 export function computeIssues(s: StoreMetrics): Issue[] {
   const issues: Issue[] = [];
+
+  // The only rule here backed by a real, directly-observed signal (from the
+  // GBP operating-status field) rather than a derived/simulated metric —
+  // everything else below is a heuristic over activity numbers.
+  const status = (s.operatingStatus ?? "").toLowerCase();
+  if (CLOSED_PATTERNS.some((p) => status.includes(p))) {
+    issues.push({ level: "critical", message: "Store is marked permanently closed on Google Business Profile" });
+  } else if (TEMP_CLOSED_PATTERNS.some((p) => status.includes(p))) {
+    issues.push({ level: "warn", message: "Store is marked temporarily closed on Google Business Profile" });
+  }
+
   const ratingDelta = s.rating - s.ratingPrev;
 
   if (ratingDelta <= -0.7) {

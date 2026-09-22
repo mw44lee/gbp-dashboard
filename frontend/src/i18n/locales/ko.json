@@ -36,7 +36,10 @@
     "critical": "긴급"
   },
   "modal": {
-    "ratingVs": "이전 {{prev}} 대비"
+    "ratingVs": "이전 {{prev}} 대비",
+    "reviewsCount": "구글 리뷰",
+    "viewOnMaps": "구글 지도에서 보기",
+    "website": "공식 웹사이트"
   },
   "funnel": {
     "label": "GBP Action Funnel",

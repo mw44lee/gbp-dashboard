@@ -28,6 +28,16 @@ export interface Store {
   imgAgeDays: number;
   issues: Issue[];
   status: Status;
+
+  // Real GBP identity fields — optional since a bare URL-list import
+  // (see backend/src/services/excelImport.ts) may not supply all of them.
+  regionGroup: string | null;
+  countryCode: string | null;
+  address: string | null;
+  phone: string | null;
+  operatingStatus: string | null;
+  websiteUrl: string | null;
+  googleReviewCount: number | null;
 }
 
 export interface Product {

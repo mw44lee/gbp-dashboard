@@ -2,9 +2,10 @@ import { useTranslation } from "react-i18next";
 import type { Review } from "../types";
 import { ReviewCard } from "./ReviewCard";
 
-const VIEW_LANG_OPTIONS = ["original", "en", "ko", "ja", "zh", "es", "vi"] as const;
+const VIEW_LANG_OPTIONS = ["original", "en", "ko", "ja", "zh", "es", "vi", "fr", "de", "th"] as const;
 const LABELS: Record<string, string> = {
   en: "English", ko: "한국어", ja: "日本語", zh: "中文", es: "Español", vi: "Tiếng Việt",
+  fr: "Français", de: "Deutsch", th: "ไทย",
 };
 
 // This is the OTHER i18n concern in the app: review content arrives in

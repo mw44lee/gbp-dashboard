@@ -30,6 +30,9 @@ const LANG_NAMES: Record<string, string> = {
   zh: "Chinese",
   es: "Spanish",
   vi: "Vietnamese",
+  fr: "French",
+  de: "German",
+  th: "Thai",
 };
 
 function langName(code: string): string {

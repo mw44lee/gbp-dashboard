@@ -3,9 +3,10 @@ import { useTranslation } from "react-i18next";
 import { api } from "../api/client";
 import type { Review } from "../types";
 
-const REPLY_LANG_OPTIONS = ["en", "ko", "ja", "zh", "es", "vi"] as const;
+const REPLY_LANG_OPTIONS = ["en", "ko", "ja", "zh", "es", "vi", "fr", "de", "th"] as const;
 const LABELS: Record<string, string> = {
   en: "English", ko: "한국어", ja: "日本語", zh: "中文", es: "Español", vi: "Tiếng Việt",
+  fr: "Français", de: "Deutsch", th: "ไทย",
 };
 
 export function AiReplyAssistant({ review }: { review: Review | null }) {

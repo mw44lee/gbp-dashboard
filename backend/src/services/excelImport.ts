@@ -15,6 +15,17 @@ interface GbpUrlRow {
   country?: string;
   gbp_url?: string;
   category?: string;
+  // Optional richer columns — present when the source can supply them (e.g.
+  // a GBP master-data export); absent for a bare URL-list file, in which
+  // case these fields are simply left untouched/default.
+  region_group?: string;
+  country_code?: string;
+  address?: string;
+  phone?: string;
+  operating_status?: string;
+  website_url?: string;
+  rating?: number;
+  review_count?: number;
 }
 
 export interface ImportResult {
@@ -42,6 +53,16 @@ export async function importGbpUrls(fileBuffer: Buffer): Promise<ImportResult> {
       region: row.region ?? "",
       country: row.country ?? "",
       category: row.category ?? "",
+      // Optional: `undefined` here means "leave untouched on update / use
+      // schema default on create" — Prisma ignores undefined data fields.
+      regionGroup: row.region_group,
+      countryCode: row.country_code,
+      address: row.address,
+      phone: row.phone,
+      operatingStatus: row.operating_status,
+      websiteUrl: row.website_url,
+      rating: row.rating,
+      googleReviewCount: row.review_count,
     };
 
     if (existing) {

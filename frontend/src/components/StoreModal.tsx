@@ -47,6 +47,14 @@ export function StoreModal({ storeId, onClose }: { storeId: number; onClose: () 
               {" "}
               {ratingDelta >= 0 ? "+" : ""}
               {ratingDelta.toFixed(1)})
+              {store.googleReviewCount != null && ` · ${store.googleReviewCount.toLocaleString()} ${t("modal.reviewsCount")}`}
+            </div>
+            <div className="store-meta">
+              {store.operatingStatus && <span>{store.operatingStatus}</span>}
+              {store.address && <span>{store.address}</span>}
+              {store.phone && <span>{store.phone}</span>}
+              <a href={store.gbpUrl} target="_blank" rel="noreferrer">{t("modal.viewOnMaps")}</a>
+              {store.websiteUrl && <a href={store.websiteUrl} target="_blank" rel="noreferrer">{t("modal.website")}</a>}
             </div>
           </div>
           <button className="close-btn" onClick={onClose}>✕</button>

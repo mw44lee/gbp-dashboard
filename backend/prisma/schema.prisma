@@ -14,8 +14,8 @@ datasource db {
 model Store {
   id             Int      @id @default(autoincrement())
   name           String
-  region         String
-  country        String
+  region         String   // city / locality, e.g. "서울", "London"
+  country        String   // raw country label from the source, e.g. "한국 (KR)"
   gbpUrl         String   @unique
   category       String
   views          Int      @default(0)
@@ -30,12 +30,23 @@ model Store {
   createdAt      DateTime @default(now())
   updatedAt      DateTime @updatedAt
 
+  // Real GBP identity fields (populated from an actual source file, e.g. a
+  // GBP export/master dataset) — optional because the earlier dummy-Excel
+  // shape doesn't have them, and a future source may not provide all of them.
+  regionGroup       String? // continent/zone grouping, e.g. "유럽", "북미"
+  countryCode       String? // ISO-ish 2-letter code parsed from the source, e.g. "KR", "FR"
+  address           String?
+  phone             String?
+  operatingStatus   String? // e.g. "정상 영업" / "임시 휴업" / "폐업" — feeds services/alerts.ts
+  websiteUrl        String?
+  googleReviewCount Int?
+
   products Product[]
   reviews  Review[]
 
-  // status/issues (healthy|warn|critical + alert text) are NOT stored here —
-  // they're derived from the fields above by services/alerts.ts on every read,
-  // so there's one place that defines "what counts as an issue".
+  // computed status/issues (healthy|warn|critical + alert text) are NOT stored
+  // here — they're derived from the fields above by services/alerts.ts on
+  // every read, so there's one place that defines "what counts as an issue".
 }
 
 model Product {
