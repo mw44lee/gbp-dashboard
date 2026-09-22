@@ -26,16 +26,19 @@ import { prisma } from "../src/db/prismaClient.js";
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 
+// Deliberately generic, not tied to a specific model/year: the dataset has
+// no product data at all, so naming a specific current model (e.g. "Galaxy
+// S25 Ultra") would silently go stale the moment a new generation ships and
+// would misrepresent this as real catalog data. Prices are illustrative USD
+// reference points only — no real pricing or per-store lineup is modeled.
 const PRODUCT_CATALOG = [
-  { name: "Galaxy S25 Ultra", category: "Smartphone", price: 1299 },
-  { name: "Galaxy Z Fold7", category: "Smartphone", price: 1899 },
-  { name: "Galaxy Watch8", category: "Wearable", price: 349 },
-  { name: "Galaxy Buds3 Pro", category: "Audio", price: 249 },
-  { name: "Galaxy Tab S11", category: "Tablet", price: 799 },
-  { name: "Neo QLED 8K TV", category: "TV", price: 3499 },
+  { name: "Galaxy Flagship Smartphone", category: "Smartphone", price: 1300 },
+  { name: "Galaxy Foldable Phone", category: "Smartphone", price: 1900 },
+  { name: "Galaxy Watch", category: "Wearable", price: 350 },
+  { name: "Galaxy Buds", category: "Audio", price: 250 },
+  { name: "Galaxy Tablet", category: "Tablet", price: 800 },
+  { name: "Neo QLED TV", category: "TV", price: 2500 },
 ];
-// Illustrative reference prices in USD — the real dataset has no product or
-// pricing data; each store's local currency/lineup isn't modeled here.
 
 const LANG_BY_COUNTRY: Record<string, string> = {
   KR: "ko", UK: "en", US: "en", CA: "en", FR: "fr", DE: "de", ES: "es", SG: "en", TH: "th", PH: "en",
@@ -72,7 +75,11 @@ async function backfillSimulatedData() {
     const purchaseEst = Math.round(visitEst * 0.4);
     const imgAgeDays = 5 + (hashString(store.gbpUrl) % 200);
 
-    const products = [PRODUCT_CATALOG[index % PRODUCT_CATALOG.length], PRODUCT_CATALOG[(index + 2) % PRODUCT_CATALOG.length]];
+    // 3 distinct catalog entries per store, starting at a store-specific
+    // (hash-derived, so deterministic) offset rather than a fixed pairing —
+    // gives real variety across 36 stores instead of a repeating 2-item cycle.
+    const catalogOffset = hashString(store.gbpUrl) % PRODUCT_CATALOG.length;
+    const products = [0, 1, 2].map((i) => PRODUCT_CATALOG[(catalogOffset + i) % PRODUCT_CATALOG.length]);
 
     const lang = LANG_BY_COUNTRY[store.countryCode ?? ""] ?? "en";
     const texts = SAMPLE_REVIEW_TEXT[lang] ?? SAMPLE_REVIEW_TEXT.en;
