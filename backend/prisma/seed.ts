@@ -75,11 +75,12 @@ async function backfillSimulatedData() {
     const purchaseEst = Math.round(visitEst * 0.4);
     const imgAgeDays = 5 + (hashString(store.gbpUrl) % 200);
 
-    // 3 distinct catalog entries per store, starting at a store-specific
-    // (hash-derived, so deterministic) offset rather than a fixed pairing —
-    // gives real variety across 36 stores instead of a repeating 2-item cycle.
+    // Mirrors what a GBP listing itself surfaces: only the first two
+    // products are prominent there, so that's all we seed. Store-specific
+    // (hash-derived) offset gives real variety across the 36 stores instead
+    // of a fixed pairing.
     const catalogOffset = hashString(store.gbpUrl) % PRODUCT_CATALOG.length;
-    const products = [0, 1, 2].map((i) => PRODUCT_CATALOG[(catalogOffset + i) % PRODUCT_CATALOG.length]);
+    const products = [0, 1].map((i) => PRODUCT_CATALOG[(catalogOffset + i) % PRODUCT_CATALOG.length]);
 
     const lang = LANG_BY_COUNTRY[store.countryCode ?? ""] ?? "en";
     const texts = SAMPLE_REVIEW_TEXT[lang] ?? SAMPLE_REVIEW_TEXT.en;
