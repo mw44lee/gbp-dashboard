@@ -6,7 +6,7 @@ Google Business Profile(GBP)를 관리하는 매장 운영 대시보드. Full-st
 
 ## 데이터
 
-`backend/data/Samsung_Experience_Store_Global_Master_Dataset.xlsx`에 담긴 실제 데이터(한국/영국/미국/캐나다/프랑스/독일/스페인/싱가포르/태국/필리핀, 36개 매장)로 시딩됩니다. 다만 모든 필드가 실데이터는 아닙니다.
+`backend/data/Samsung_Experience_Store_Global_Directory_Expanded.xlsx`에 담긴 실제 데이터(한국/영국/프랑스/독일/스페인/네덜란드/벨기에/포르투갈/이탈리아/미국/캐나다/싱가포르/말레이시아/태국/필리핀/호주, 58개 매장)로 시딩됩니다. 다만 모든 필드가 실데이터는 아닙니다.
 
 | 종류 | 필드 | 출처 |
 |---|---|---|

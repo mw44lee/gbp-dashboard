@@ -69,8 +69,15 @@ export async function ingestDailyReport(body: string, subject?: string): Promise
       continue;
     }
     flaggedIds.add(store.id);
-    const status = item.kind === "perm_closed" ? STATUS_PERM_CLOSED : STATUS_TEMP_CLOSED;
-    if (store.operatingStatus !== status) {
+    // Compare by kind, not exact text: the master sheet writes "폐업" while
+    // this report path writes "폐업 (Permanently closed)", and rewriting one
+    // into the other every day would just be noise.
+    const alreadyFlagged =
+      item.kind === "perm_closed"
+        ? store.operatingStatus?.includes("폐업")
+        : store.operatingStatus?.includes("임시 휴업");
+    if (!alreadyFlagged) {
+      const status = item.kind === "perm_closed" ? STATUS_PERM_CLOSED : STATUS_TEMP_CLOSED;
       await prisma.store.update({ where: { id: store.id }, data: { operatingStatus: status } });
       result.storesUpdated += 1;
     }

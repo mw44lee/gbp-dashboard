@@ -1,5 +1,5 @@
-// Seeds the DB from the real Samsung Experience Store dataset the user
-// provided (backend/data/Samsung_Experience_Store_Global_Master_Dataset.xlsx,
+// Seeds the DB from the real Samsung Experience Store directory the user
+// provided (backend/data/Samsung_Experience_Store_Global_Directory_Expanded.xlsx,
 // normalized by backend/data/convert_real_dataset.py into
 // backend/data/gbp-urls.real.xlsx — the same column shape
 // POST /api/import/gbp-urls expects).

@@ -34,6 +34,16 @@ export interface ImportResult {
   skipped: number;
 }
 
+// "-" is the source's "no value", and "#ERROR!"-style cells are spreadsheet
+// formula failures (a phone number starting with "+" does this in Google
+// Sheets). Neither is data, so neither may reach the database.
+function cleanText(v: string | undefined): string | undefined {
+  if (v === undefined) return undefined;
+  const s = String(v).trim();
+  if (s === "" || s === "-" || (s.startsWith("#") && s.endsWith("!"))) return undefined;
+  return s;
+}
+
 export async function importGbpUrls(fileBuffer: Buffer): Promise<ImportResult> {
   const workbook = XLSX.read(fileBuffer, { type: "buffer" });
   const sheet = workbook.Sheets[workbook.SheetNames[0]];
@@ -57,16 +67,21 @@ export async function importGbpUrls(fileBuffer: Buffer): Promise<ImportResult> {
       // schema default on create" — Prisma ignores undefined data fields.
       regionGroup: row.region_group,
       countryCode: row.country_code,
-      address: row.address,
-      phone: row.phone,
-      operatingStatus: row.operating_status,
-      websiteUrl: row.website_url,
+      address: cleanText(row.address),
+      phone: cleanText(row.phone),
+      operatingStatus: cleanText(row.operating_status),
+      websiteUrl: cleanText(row.website_url),
       rating: row.rating,
       googleReviewCount: row.review_count,
     };
 
     if (existing) {
-      await prisma.store.update({ where: { gbpUrl: row.gbp_url }, data: fields });
+      // Roll the old rating into ratingPrev when it changed, so repeated
+      // imports build a real trend for the rating-decline alerts instead of
+      // comparing against the very first import forever.
+      const ratingPrev =
+        row.rating !== undefined && row.rating !== existing.rating ? existing.rating : undefined;
+      await prisma.store.update({ where: { gbpUrl: row.gbp_url }, data: { ...fields, ratingPrev } });
       result.updated += 1;
     } else {
       await prisma.store.create({ data: { ...fields, gbpUrl: row.gbp_url } });
