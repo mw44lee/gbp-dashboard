@@ -4,6 +4,7 @@ import cors from "cors";
 import { storesRouter } from "./routes/stores.js";
 import { aiRouter } from "./routes/ai.js";
 import { importRouter } from "./routes/import.js";
+import { reportsRouter } from "./routes/reports.js";
 
 const app = express();
 app.use(cors());
@@ -12,6 +13,7 @@ app.use(express.json());
 app.use("/api/stores", storesRouter);
 app.use("/api", aiRouter); // exposes /api/reviews/:id/reply-draft
 app.use("/api/import", importRouter);
+app.use("/api/reports", reportsRouter);
 
 app.get("/api/health", (_req, res) => res.json({ ok: true }));
 

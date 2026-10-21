@@ -85,3 +85,24 @@ model ReviewTranslation {
 
   @@unique([reviewId, lang])
 }
+
+// One row per daily "[Samsung Experience Store]" profile-check email.
+// The email is a fleet-wide summary (totals, abnormal stores, per-region
+// counts), so it's stored as its own snapshot instead of being squeezed into
+// Store columns. SQLite has no JSON column type in this Prisma version, hence
+// the *Json string fields.
+model DailyReport {
+  id               Int      @id @default(autoincrement())
+  reportDate       String   @unique // YYYY-MM-DD, taken from the report body
+  totalStores      Int
+  totalCountries   Int
+  activeCount      Int
+  inactiveCount    Int
+  tempClosedCount  Int
+  permClosedCount  Int
+  changeNote       String   // e.g. "변동 없음 (0건)"
+  regionsJson      String
+  abnormalJson     String
+  sourceSubject    String?
+  createdAt        DateTime @default(now())
+}

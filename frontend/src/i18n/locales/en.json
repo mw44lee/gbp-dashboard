@@ -11,6 +11,15 @@
       "critical": "Critical Issues"
     }
   },
+  "daily": {
+    "label": "Daily Profile Check",
+    "sub": "Fleet-wide status from the daily [Samsung Experience Store] check email",
+    "activeStores": "stores active ({{pct}}%)",
+    "asOf": "As of {{date}} · {{countries}} countries",
+    "tempClosed": "{{count}} temporarily closed",
+    "permClosed": "{{count}} permanently closed",
+    "importGap": "This board has {{imported}} of {{total}} reported stores. Import the latest master dataset to add the rest."
+  },
   "alerts": {
     "label": "Alerts",
     "sub": "Automatically detected per-store issues, sent to admins and store managers in real time",

@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { api } from "./api/client";
-import type { Store } from "./types";
+import type { DailyReport, Store } from "./types";
 import { Header } from "./components/Header";
+import { DailyCheck } from "./components/DailyCheck";
 import { AlertFeed } from "./components/AlertFeed";
 import { StoreBoard } from "./components/StoreBoard";
 import { StoreModal } from "./components/StoreModal";
@@ -12,12 +13,15 @@ export default function App() {
   const [stores, setStores] = useState<Store[]>([]);
   const [selectedStoreId, setSelectedStoreId] = useState<number | null>(null);
   const [lastSync, setLastSync] = useState<Date | null>(null);
+  const [report, setReport] = useState<DailyReport | null>(null);
 
   useEffect(() => {
     api.listStores().then((data) => {
       setStores(data);
       setLastSync(new Date());
     });
+    // 404 just means no daily email has been ingested yet — hide the panel.
+    api.latestReport().then(setReport).catch(() => setReport(null));
   }, []);
 
   const locale = i18n.resolvedLanguage === "ko" ? "ko-KR" : "en-US";
@@ -25,6 +29,16 @@ export default function App() {
   return (
     <div className="wrap">
       <Header stores={stores} />
+
+      {report && (
+        <>
+          <div className="sec-head">
+            <div className="label">{t("daily.label")}</div>
+            <div className="sub">{t("daily.sub")}</div>
+          </div>
+          <DailyCheck report={report} importedStores={stores.length} />
+        </>
+      )}
 
       <div className="sec-head">
         <div className="label">{t("alerts.label")}</div>

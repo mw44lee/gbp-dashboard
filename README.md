@@ -45,6 +45,18 @@ cd backend
 npx prisma migrate reset --force
 ```
 
+## 일일 점검 보고서 수집
+
+매일 오는 `[Samsung Experience Store]` 점검 메일(전체 매장 수, 정상/이상 매장, 권역별 현황)을 DB에 반영하고 대시보드 상단 "Daily Profile Check"에 표시합니다.
+
+```bash
+npm run report:ingest -w backend -- <메일 본문을 저장한 txt 파일> "<메일 제목>"
+```
+
+- 파서(`backend/src/services/reportParser.ts`)는 정규식만 쓰는 엄격한 파서라 형식이 다르면 에러를 내고 멈춥니다.
+- 이상 매장은 메일의 지도 링크에 있는 place_id로 DB 매장과 매칭해 운영 상태를 갱신합니다. 메일에 적힌 이상 매장 수와 파싱한 수가 다르면 상태는 건드리지 않고 경고만 남깁니다.
+- 서버를 꺼둔 상태에서도 DB에 직접 쓰므로 스케줄 작업에서 호출하기 좋습니다. 최신 결과는 `GET /api/reports/latest`로 조회합니다.
+
 ## 앞으로 할 일
 
 - 지금은 `backend/data/*.xlsx`를 통한 수동 import이지만, 최종적으로는 Google Business Profile API(계정 소유 시) 또는 Places API로 매장 URL/정보를 실시간 수집하는 에이전트를 붙일 예정입니다. `POST /api/import/gbp-urls`가 그 접점입니다.

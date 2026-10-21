@@ -1,4 +1,4 @@
-import type { Store, StoreDetail, Review } from "../types";
+import type { Store, StoreDetail, Review, DailyReport } from "../types";
 
 // Thin fetch wrapper. Every call goes through /api/... which Vite proxies to
 // the Express backend in dev (vite.config.ts) — the browser never talks to
@@ -17,6 +17,7 @@ async function request<T>(path: string, init?: RequestInit): Promise<T> {
 
 export const api = {
   listStores: () => request<Store[]>("/api/stores"),
+  latestReport: () => request<DailyReport>("/api/reports/latest"),
   getStore: (id: number) => request<StoreDetail>(`/api/stores/${id}`),
   getReviews: (storeId: number, lang?: string) =>
     request<Review[]>(`/api/stores/${storeId}/reviews${lang ? `?lang=${lang}` : ""}`),

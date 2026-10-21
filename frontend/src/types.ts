@@ -61,6 +61,19 @@ export interface Review {
   displayLang?: string;
 }
 
+export interface DailyReport {
+  reportDate: string;
+  totalStores: number;
+  totalCountries: number;
+  activeCount: number;
+  inactiveCount: number;
+  tempClosedCount: number;
+  permClosedCount: number;
+  changeNote: string;
+  regions: { name: string; normal: number; total: number; detail: string }[];
+  abnormal: { label: string; kind: "temp_closed" | "perm_closed"; note: string | null; placeId: string | null }[];
+}
+
 export interface StoreDetail extends Store {
   products: Product[];
   reviews: Review[];

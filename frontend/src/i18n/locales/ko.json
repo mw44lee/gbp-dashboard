@@ -11,6 +11,15 @@
       "critical": "긴급 이슈"
     }
   },
+  "daily": {
+    "label": "Daily Profile Check",
+    "sub": "매일 오는 [Samsung Experience Store] 점검 메일 기준 글로벌 현황",
+    "activeStores": "매장 정상 가동 ({{pct}}%)",
+    "asOf": "{{date}} 기준 · {{countries}}개국",
+    "tempClosed": "임시 휴업 {{count}}개",
+    "permClosed": "영구 폐업 {{count}}개",
+    "importGap": "보고서 {{total}}개 매장 중 이 보드에는 {{imported}}개만 있습니다. 최신 마스터 데이터셋을 가져오면 나머지가 추가됩니다."
+  },
   "alerts": {
     "label": "Alerts",
     "sub": "자동 감지된 매장별 이슈 — 관리자·매장 매니저에게 실시간 노티 발송 대상",
