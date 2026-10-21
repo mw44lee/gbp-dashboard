@@ -69,6 +69,10 @@ model Review {
   originalLang String
   date         String
   sentiment    String
+  // Places API review resource name ("places/<id>/reviews/<id>"). Null marks a
+  // seeded placeholder; real synced reviews always have one, which also makes
+  // re-syncing idempotent.
+  externalId   String?  @unique
 
   translations ReviewTranslation[]
 }

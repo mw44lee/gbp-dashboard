@@ -21,6 +21,12 @@ export interface StoreMetrics {
   operatingStatus?: string | null;
 }
 
+// The cover-photo age, conversion and call-share rules read imgAgeDays and the
+// funnel numbers, which prisma/seed.ts currently SIMULATES (no GBP Performance
+// API yet). Alerting on invented numbers produced "critical" stores with no
+// real problem, so those rules stay off until real activity data is connected.
+const USE_ESTIMATED_METRICS = false;
+
 const INDUSTRY_AVG_DIRECTIONS_TO_VISIT = 0.41;
 const CLOSED_PATTERNS = ["폐업", "permanently closed", "closed permanently"];
 const TEMP_CLOSED_PATTERNS = ["임시 휴업", "temporarily closed"];
@@ -46,25 +52,27 @@ export function computeIssues(s: StoreMetrics): Issue[] {
     issues.push({ level: "warn", message: `Rating declining: ${s.ratingPrev.toFixed(1)} → ${s.rating.toFixed(1)}` });
   }
 
-  if (s.imgAgeDays >= 180) {
-    issues.push({ level: "critical", message: `Cover photo not updated in ${s.imgAgeDays} days` });
-  } else if (s.imgAgeDays >= 60) {
-    issues.push({ level: "warn", message: `Cover photo aging (${s.imgAgeDays} days since last update)` });
-  }
-
-  if (s.directions > 0) {
-    const conversion = s.visitEst / s.directions;
-    if (conversion < INDUSTRY_AVG_DIRECTIONS_TO_VISIT * 0.7) {
-      issues.push({
-        level: "warn",
-        message: `Directions-to-visit conversion is ${(conversion * 100).toFixed(0)}% vs ~${(INDUSTRY_AVG_DIRECTIONS_TO_VISIT * 100).toFixed(0)}% industry average`,
-      });
+  if (USE_ESTIMATED_METRICS) {
+    if (s.imgAgeDays >= 180) {
+      issues.push({ level: "critical", message: `Cover photo not updated in ${s.imgAgeDays} days` });
+    } else if (s.imgAgeDays >= 60) {
+      issues.push({ level: "warn", message: `Cover photo aging (${s.imgAgeDays} days since last update)` });
     }
-  }
 
-  const totalActions = s.websiteClicks + s.directions + s.calls;
-  if (totalActions > 0 && s.calls / totalActions > 0.45 && s.rating < 4.0) {
-    issues.push({ level: "critical", message: `Call volume unusually high relative to other actions (${s.calls} calls) — may indicate unresolved complaints` });
+    if (s.directions > 0) {
+      const conversion = s.visitEst / s.directions;
+      if (conversion < INDUSTRY_AVG_DIRECTIONS_TO_VISIT * 0.7) {
+        issues.push({
+          level: "warn",
+          message: `Directions-to-visit conversion is ${(conversion * 100).toFixed(0)}% vs ~${(INDUSTRY_AVG_DIRECTIONS_TO_VISIT * 100).toFixed(0)}% industry average`,
+        });
+      }
+    }
+
+    const totalActions = s.websiteClicks + s.directions + s.calls;
+    if (totalActions > 0 && s.calls / totalActions > 0.45 && s.rating < 4.0) {
+      issues.push({ level: "critical", message: `Call volume unusually high relative to other actions (${s.calls} calls) — may indicate unresolved complaints` });
+    }
   }
 
   return issues;

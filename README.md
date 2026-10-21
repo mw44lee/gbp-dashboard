@@ -57,6 +57,23 @@ npm run report:ingest -w backend -- <메일 본문을 저장한 txt 파일> "<�
 - 이상 매장은 메일의 지도 링크에 있는 place_id로 DB 매장과 매칭해 운영 상태를 갱신합니다. 메일에 적힌 이상 매장 수와 파싱한 수가 다르면 상태는 건드리지 않고 경고만 남깁니다.
 - 서버를 꺼둔 상태에서도 DB에 직접 쓰므로 스케줄 작업에서 호출하기 좋습니다. 최신 결과는 `GET /api/reports/latest`로 조회합니다.
 
+## 실제 리뷰 가져오기
+
+시드에 들어 있는 리뷰는 "Sample Reviewer" 플레이스홀더입니다. 실제 Google 리뷰는 Places API (New)로 가져옵니다.
+
+1. Google Cloud Console에서 프로젝트 생성, 결제 계정 연결, "Places API (New)" 활성화
+2. API 키 발급 후 키 제한을 "Places API (New)"로 설정
+3. `backend/.env`의 `GOOGLE_PLACES_API_KEY=`에 키 입력 (이 파일은 git에 올라가지 않습니다)
+4. `npm run reviews:sync -w backend`
+
+- 매장당 Google이 고른 최신·관련 리뷰 최대 5개만 반환됩니다. 전체 이력은 Business Profile API(계정 소유자 OAuth)가 필요합니다.
+- 동기화에 성공한 매장은 플레이스홀더 리뷰가 삭제되고, 다시 실행해도 리뷰 고유 ID(`externalId`)로 중복 없이 갱신됩니다.
+- `reviews` 필드는 기본 필드보다 높은 요금 등급이라 콘솔에서 요금을 확인하세요.
+
+## 알림 기준
+
+`backend/src/services/alerts.ts`. 실제 데이터에 근거한 규칙만 켜져 있습니다: 영구 폐업(긴급), 임시 휴업(주의), 평점 하락(0.7 이상 긴급, 0.3 이상 주의). 대표 이미지 경과일·전환율·통화 비중 규칙은 시뮬레이션 값을 쓰기 때문에 `USE_ESTIMATED_METRICS = false`로 꺼 두었고, 실제 GBP 활동 데이터를 연결하면 켭니다.
+
 ## 앞으로 할 일
 
 - 지금은 `backend/data/*.xlsx`를 통한 수동 import이지만, 최종적으로는 Google Business Profile API(계정 소유 시) 또는 Places API로 매장 URL/정보를 실시간 수집하는 에이전트를 붙일 예정입니다. `POST /api/import/gbp-urls`가 그 접점입니다.

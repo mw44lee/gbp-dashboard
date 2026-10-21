@@ -12,7 +12,8 @@
     "prisma:migrate": "prisma migrate dev",
     "prisma:seed": "prisma db seed",
     "prisma:studio": "prisma studio",
-    "report:ingest": "tsx scripts/ingestReport.ts"
+    "report:ingest": "tsx scripts/ingestReport.ts",
+    "reviews:sync": "tsx scripts/syncReviews.ts"
   },
   "dependencies": {
     "@prisma/client": "^5.22.0",
