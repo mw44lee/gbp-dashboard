@@ -50,7 +50,7 @@ frontend/  React 18 + Vite 5 + TypeScript, react-i18next          :5173 (/api는
 ```bash
 npm install                                   # 루트에서 한 번 (workspaces)
 cp backend/.env.example backend/.env          # 필요하면 키 입력 (둘 다 선택 사항)
-cd backend && npx prisma migrate deploy && npx prisma db seed && cd ..
+cd backend && npx prisma migrate deploy && npx prisma generate && npx prisma db seed && cd ..
 npm run dev                                   # 백엔드 + 프론트 동시 실행
 
 npx tsc --noEmit -p backend && npx tsc --noEmit -p frontend    # 타입 체크 (테스트는 아직 없음)
